@@ -22,6 +22,10 @@ public class Vaso {
         this.cafe = true;
     }
 
+    public void agregarTe(){
+        this.te = true;
+    }
+
     public boolean tieneCafe() {
         return this.cafe;
     }

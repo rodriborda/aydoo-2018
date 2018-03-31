@@ -8,5 +8,7 @@ public class MaquinaExpendedoraDeBebidas {
     }
 
     public void hacerTeConLecheConNDeAzucar(Vaso unVaso, int cantidadAzucar) {
+        unVaso.setCantidadDeAzucar(cantidadAzucar);
+        unVaso.agregarTe();
     }
 }
