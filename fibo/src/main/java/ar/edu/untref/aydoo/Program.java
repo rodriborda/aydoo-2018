@@ -6,6 +6,15 @@ public class Program {
     }
 
     public static final void main(final String[] arg) {
-        System.out.println("hola!");
+
+        Fibonachi fibo = new Fibonachi();
+
+        System.out.print("fibo<" + arg[0] + ">: ");
+
+        for(int i = 0; i < Integer.parseInt(arg[0]); i++){
+            System.out.print(fibo.calcularFibonachi(i) + " ");
+        }
+
+        System.out.println();
     }
 }
