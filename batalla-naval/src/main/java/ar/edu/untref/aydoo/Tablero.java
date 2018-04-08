@@ -28,4 +28,8 @@ public class Tablero {
     public String getBote(Posicion posicion) {
         return this.posiciones[posicion.getPosicionVertical()][posicion.getPosicionHorizontal()].getBote();
     }
+
+    public String disparar(Posicion posicion) {
+        return "Agua";
+    }
 }

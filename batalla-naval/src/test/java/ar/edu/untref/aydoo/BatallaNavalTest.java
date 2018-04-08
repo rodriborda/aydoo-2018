@@ -45,5 +45,13 @@ public class BatallaNavalTest {
         Assert.assertEquals(bote1.getNombre(), this.unTablero.getBote(posicion));
     }
 
+    @Test
+    public void dispararEnPosicionVaciaDevuelveAgua(){
+        Posicion posicion = new Posicion(1,1);
+
+        String resultado = this.unTablero.disparar(posicion);
+
+        Assert.assertEquals("Agua", resultado);
+    }
 
 }
