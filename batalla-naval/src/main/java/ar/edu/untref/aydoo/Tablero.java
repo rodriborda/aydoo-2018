@@ -14,12 +14,18 @@ public class Tablero {
     }
 
     public void ponerBote(Bote unBote, Posicion posicion) {
-        this.posiciones[posicion.getPosicionVertical()][posicion.getPosicionHorizontal()].setEsAgua(false);
+        if(this.posiciones[posicion.getPosicionVertical()][posicion.getPosicionHorizontal()].esAgua()){
+            this.posiciones[posicion.getPosicionVertical()][posicion.getPosicionHorizontal()].setBote(unBote);
+        }
     }
 
     public boolean estaDisponible(Posicion posicion) {
 
         return this.posiciones[posicion.getPosicionVertical()][posicion.getPosicionHorizontal()].esAgua();
 
+    }
+
+    public String getBote(Posicion posicion) {
+        return this.posiciones[posicion.getPosicionVertical()][posicion.getPosicionHorizontal()].getBote();
     }
 }

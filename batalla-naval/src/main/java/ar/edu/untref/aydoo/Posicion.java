@@ -4,16 +4,17 @@ public class Posicion {
 
     private int posicionVertical;
     private int posicionHorizontal;
-    private boolean esAgua;
+    private boolean vacio;
+    private Bote bote;
 
     public Posicion(int posicionHorizontal, int posicionVertical) {
         this.posicionHorizontal = posicionHorizontal;
         this.posicionVertical = posicionVertical;
-        this.esAgua = true;
+        this.vacio = true;
     }
 
     public boolean esAgua() {
-        return this.esAgua;
+        return this.vacio;
     }
 
     public int getPosicionVertical() {
@@ -25,6 +26,16 @@ public class Posicion {
     }
 
     public void setEsAgua(boolean esAgua) {
-        this.esAgua = esAgua;
+        this.vacio = esAgua;
     }
+
+    public String getBote() {
+        return this.bote.getNombre();
+    }
+
+    public void setBote(Bote unBote){
+        this.bote = unBote;
+        this.setEsAgua(false);
+    }
+
 }
