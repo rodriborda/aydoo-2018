@@ -30,6 +30,10 @@ public class Tablero {
     }
 
     public String disparar(Posicion posicion) {
-        return "Agua";
+        if(this.estaDisponible(posicion)){
+            return "Agua";
+        }else {
+            return "Hundido";
+        }
     }
 }
