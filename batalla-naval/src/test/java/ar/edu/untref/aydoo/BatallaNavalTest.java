@@ -9,7 +9,7 @@ public class BatallaNavalTest {
 
     @Before
     public void setUp() {
-        this.unTablero = new Tablero();
+        this.unTablero = new Tablero(10, 10);
     }
 
 

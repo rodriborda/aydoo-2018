@@ -2,15 +2,15 @@ package ar.edu.untref.aydoo;
 
 public class Posicion {
 
-    private int posicionVertical;
-    private int posicionHorizontal;
+    private int fila;
+    private int columna;
     private boolean vacio;
     private Bote bote;
     private Crucero crucero;
 
-    public Posicion(int posicionHorizontal, int posicionVertical) {
-        this.posicionHorizontal = posicionHorizontal;
-        this.posicionVertical = posicionVertical;
+    public Posicion(int fila, int columna) {
+        this.columna = columna;
+        this.fila = fila;
         this.vacio = true;
     }
 
@@ -18,12 +18,12 @@ public class Posicion {
         return this.vacio;
     }
 
-    public int getPosicionVertical() {
-        return posicionVertical;
+    public int getFila() {
+        return fila;
     }
 
-    public int getPosicionHorizontal() {
-        return posicionHorizontal;
+    public int getColumna() {
+        return columna;
     }
 
     public void setEsAgua() {
