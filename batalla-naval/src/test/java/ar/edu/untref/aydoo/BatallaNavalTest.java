@@ -115,4 +115,16 @@ public class BatallaNavalTest {
         Assert.assertEquals(Disparo.TOCADO, resultado);
 
     }
+
+    @Test
+    public void dispararDosVecesUnCruceroEnLaMismaPosicionDevuelveAgua(){
+        Posicion primeraPosicion = new Posicion(1,1);
+        Crucero crucero = new Crucero("crucero");
+        this.unTablero.ponerCrucero(crucero, primeraPosicion, Orientacion.HORIZONTAL);
+
+        this.unTablero.disparar(primeraPosicion);
+        Disparo resultado = this.unTablero.disparar(primeraPosicion);
+
+        Assert.assertEquals(Disparo.AGUA, resultado);
+    }
 }
