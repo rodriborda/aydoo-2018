@@ -84,11 +84,23 @@ public class BatallaNavalTest {
         Posicion segundaPosicion = new Posicion(1,2);
         Crucero crucero = new Crucero();
 
-        this.unTablero.ponerCrucero(crucero, primeraPosicion);
+        this.unTablero.ponerCrucero(crucero, primeraPosicion, Orientacion.HORIZONTAL);
 
         Assert.assertFalse(this.unTablero.estaDisponible(primeraPosicion));
         Assert.assertFalse(this.unTablero.estaDisponible(segundaPosicion));
 
 
+    }
+
+    @Test
+    public void ponerUnCruceroEnPosicionVertical(){
+        Posicion primeraPosicion = new Posicion(1,1);
+        Posicion segundaPosicion = new Posicion(2,1);
+        Crucero crucero = new Crucero();
+
+        this.unTablero.ponerCrucero(crucero, primeraPosicion, Orientacion.VERTICAL);
+
+        Assert.assertFalse(this.unTablero.estaDisponible(primeraPosicion));
+        Assert.assertFalse(this.unTablero.estaDisponible(segundaPosicion));
     }
 }

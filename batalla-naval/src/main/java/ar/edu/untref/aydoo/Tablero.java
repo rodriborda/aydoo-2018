@@ -1,6 +1,5 @@
 package ar.edu.untref.aydoo;
 
-import java.util.ArrayList;
 
 public class Tablero {
     private Posicion[][] posiciones;
@@ -21,12 +20,20 @@ public class Tablero {
         }
     }
 
-    public void ponerCrucero(Crucero unCrucero, Posicion primeraPosicion) {
-        if(this.estaDisponible(primeraPosicion) && this.posiciones[primeraPosicion.getFila()][primeraPosicion.getColumna() + 1].esAgua()){
-            this.posiciones[primeraPosicion.getFila()][primeraPosicion.getColumna()].setCrucero(unCrucero);
-            this.posiciones[primeraPosicion.getFila()][primeraPosicion.getColumna() + 1].setCrucero(unCrucero);
+    public void ponerCrucero(Crucero unCrucero, Posicion primeraPosicion, Orientacion orientacion) {
 
+        if(orientacion==Orientacion.HORIZONTAL){
+            if(this.estaDisponible(primeraPosicion) && this.posiciones[primeraPosicion.getFila()][primeraPosicion.getColumna() + 1].esAgua()){
+                this.posiciones[primeraPosicion.getFila()][primeraPosicion.getColumna()].setCrucero(unCrucero);
+                this.posiciones[primeraPosicion.getFila()][primeraPosicion.getColumna() + 1].setCrucero(unCrucero);
+            }
+        }else {
+            if(this.estaDisponible(primeraPosicion) && this.posiciones[primeraPosicion.getFila() + 1][primeraPosicion.getColumna()].esAgua()){
+                this.posiciones[primeraPosicion.getFila()][primeraPosicion.getColumna()].setCrucero(unCrucero);
+                this.posiciones[primeraPosicion.getFila() + 1][primeraPosicion.getColumna()].setCrucero(unCrucero);
+            }
         }
+
     }
 
     public boolean estaDisponible(Posicion posicion) {
@@ -45,7 +52,7 @@ public class Tablero {
         if(this.estaDisponible(posicion)){
             return Disparo.AGUA;
         }else {
-            this.posiciones[posicion.getFila()][posicion.getColumna()].setEsAgua();
+            this.posiciones[posicion.getFila()][posicion.getColumna()].setAgua();
             return Disparo.HUNDIDO;
         }
     }

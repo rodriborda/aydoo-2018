@@ -26,7 +26,7 @@ public class Posicion {
         return columna;
     }
 
-    public void setEsAgua() {
+    public void setAgua() {
         this.vacio = true;
     }
 
