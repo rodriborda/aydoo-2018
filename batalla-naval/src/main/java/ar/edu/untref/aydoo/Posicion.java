@@ -25,8 +25,8 @@ public class Posicion {
         return posicionHorizontal;
     }
 
-    public void setEsAgua(boolean esAgua) {
-        this.vacio = esAgua;
+    public void setEsAgua() {
+        this.vacio = true;
     }
 
     public String getBote() {
@@ -35,7 +35,7 @@ public class Posicion {
 
     public void setBote(Bote unBote){
         this.bote = unBote;
-        this.setEsAgua(false);
+        this.vacio = false;
     }
 
 }

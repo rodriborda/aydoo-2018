@@ -66,4 +66,15 @@ public class BatallaNavalTest {
 
     }
 
+    @Test
+    public void dispararAUnBoteLoQuitaDelTablero(){
+        Posicion posicion = new Posicion(1,1);
+        Bote bote = new Bote("Bote");
+
+        this.unTablero.ponerBote(bote,posicion);
+        this.unTablero.disparar(posicion);
+
+        Assert.assertTrue(this.unTablero.estaDisponible(posicion));
+    }
+
 }
