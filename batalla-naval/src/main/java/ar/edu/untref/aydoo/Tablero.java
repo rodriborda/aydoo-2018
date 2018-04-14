@@ -19,22 +19,31 @@ public class Tablero {
         }
     }
 
+    public void ponerCrucero(Crucero unCrucero, Posicion primeraPosicion) {
+        if(this.estaDisponible(primeraPosicion) && this.posiciones[primeraPosicion.getPosicionVertical()][primeraPosicion.getPosicionHorizontal() + 1].esAgua()){
+            this.posiciones[primeraPosicion.getPosicionHorizontal()][primeraPosicion.getPosicionVertical()].setCrucero(unCrucero);
+            this.posiciones[primeraPosicion.getPosicionHorizontal()][primeraPosicion.getPosicionVertical() + 1].setCrucero(unCrucero);
+
+        }
+    }
+
     public boolean estaDisponible(Posicion posicion) {
 
-        return this.posiciones[posicion.getPosicionVertical()][posicion.getPosicionHorizontal()].esAgua();
+        return this.posiciones[posicion.getPosicionHorizontal()][posicion.getPosicionVertical()].esAgua();
 
     }
 
     public String getBote(Posicion posicion) {
-        return this.posiciones[posicion.getPosicionVertical()][posicion.getPosicionHorizontal()].getBote();
+        return this.posiciones[posicion.getPosicionHorizontal()][posicion.getPosicionVertical()].getBote();
     }
 
     public Disparo disparar(Posicion posicion) {
         if(this.estaDisponible(posicion)){
             return Disparo.AGUA;
         }else {
-            this.posiciones[posicion.getPosicionVertical()][posicion.getPosicionHorizontal()].setEsAgua();
+            this.posiciones[posicion.getPosicionHorizontal()][posicion.getPosicionVertical()].setEsAgua();
             return Disparo.HUNDIDO;
         }
     }
+
 }

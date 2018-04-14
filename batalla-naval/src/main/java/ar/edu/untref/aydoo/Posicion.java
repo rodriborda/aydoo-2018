@@ -6,6 +6,7 @@ public class Posicion {
     private int posicionHorizontal;
     private boolean vacio;
     private Bote bote;
+    private Crucero crucero;
 
     public Posicion(int posicionHorizontal, int posicionVertical) {
         this.posicionHorizontal = posicionHorizontal;
@@ -38,4 +39,8 @@ public class Posicion {
         this.vacio = false;
     }
 
+    public void setCrucero(Crucero crucero) {
+        this.crucero = crucero;
+        this.vacio = false;
+    }
 }

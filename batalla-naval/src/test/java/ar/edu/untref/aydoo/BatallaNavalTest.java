@@ -12,6 +12,16 @@ public class BatallaNavalTest {
         this.unTablero = new Tablero();
     }
 
+
+    @Test
+    public void tableroVacioTodasLasPosicionesLibres() {
+
+        Posicion posicion = new Posicion(1, 1);
+
+        Assert.assertTrue(this.unTablero.estaDisponible(posicion));
+
+    }
+
     @Test
     public void ponerBoteEnTableroYDevolverQueNoEstaDisponible() {
 
@@ -21,15 +31,6 @@ public class BatallaNavalTest {
         this.unTablero.ponerBote(unBote, posicion);
 
         Assert.assertFalse(this.unTablero.estaDisponible(posicion));
-
-    }
-
-    @Test
-    public void tableroVacioTodasLasPosicionesLibres() {
-
-        Posicion posicion = new Posicion(1, 1);
-
-        Assert.assertTrue(this.unTablero.estaDisponible(posicion));
 
     }
 
@@ -77,4 +78,17 @@ public class BatallaNavalTest {
         Assert.assertTrue(this.unTablero.estaDisponible(posicion));
     }
 
+    @Test
+    public void ponerUnCruceroYVerQueAmbasPosicionesEstanOcupadas(){
+        Posicion primeraPosicion = new Posicion(1,1);
+        Posicion segundaPosicion = new Posicion(1,2);
+        Crucero crucero = new Crucero();
+
+        this.unTablero.ponerCrucero(crucero, primeraPosicion);
+
+        Assert.assertFalse(this.unTablero.estaDisponible(primeraPosicion));
+        Assert.assertFalse(this.unTablero.estaDisponible(segundaPosicion));
+
+
+    }
 }
