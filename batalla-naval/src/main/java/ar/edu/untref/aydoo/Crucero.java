@@ -3,9 +3,11 @@ package ar.edu.untref.aydoo;
 public class Crucero extends Barco{
 
     private String nombre;
+    private int disparosRecividos;
 
     public Crucero(String nombre){
         this.nombre = nombre;
+        this.disparosRecividos = 0;
     }
 
     @Override
@@ -15,6 +17,11 @@ public class Crucero extends Barco{
 
     @Override
     public Disparo recibirDisparo() {
-        return Disparo.TOCADO;
+        if(this.disparosRecividos < 1){
+            this.disparosRecividos++;
+            return Disparo.TOCADO;
+        }else {
+            return Disparo.HUNDIDO;
+        }
     }
 }
