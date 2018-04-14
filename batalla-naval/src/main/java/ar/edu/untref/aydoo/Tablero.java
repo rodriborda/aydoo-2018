@@ -42,7 +42,7 @@ public class Tablero {
 
     }
 
-    public String getBote(Posicion posicion) {
+    public String getBarco(Posicion posicion) {
 
         return this.posiciones[posicion.getFila()][posicion.getColumna()].getNombreBarco();
 
