@@ -5,8 +5,7 @@ public class Posicion {
     private int fila;
     private int columna;
     private boolean vacio;
-    private Bote bote;
-    private Crucero crucero;
+    private Barco barco;
 
     public Posicion(int fila, int columna) {
         this.columna = columna;
@@ -30,17 +29,21 @@ public class Posicion {
         this.vacio = true;
     }
 
-    public String getBote() {
-        return this.bote.getNombre();
+    public String getNombreBarco() {
+        return this.barco.getNombre();
     }
 
     public void setBote(Bote unBote){
-        this.bote = unBote;
+        this.barco = unBote;
         this.vacio = false;
     }
 
     public void setCrucero(Crucero crucero) {
-        this.crucero = crucero;
+        this.barco = crucero;
         this.vacio = false;
+    }
+
+    public Barco getBarco(){
+        return this.barco;
     }
 }

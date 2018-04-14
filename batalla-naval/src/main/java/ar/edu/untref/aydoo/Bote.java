@@ -1,6 +1,6 @@
 package ar.edu.untref.aydoo;
 
-public class Bote {
+public class Bote extends Barco{
 
     private String nombre;
 
@@ -10,5 +10,10 @@ public class Bote {
 
     public String getNombre() {
         return this.nombre;
+    }
+
+    @Override
+    public Disparo recibirDisparo() {
+        return Disparo.HUNDIDO;
     }
 }

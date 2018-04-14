@@ -44,7 +44,7 @@ public class Tablero {
 
     public String getBote(Posicion posicion) {
 
-        return this.posiciones[posicion.getFila()][posicion.getColumna()].getBote();
+        return this.posiciones[posicion.getFila()][posicion.getColumna()].getNombreBarco();
 
     }
 
@@ -52,8 +52,9 @@ public class Tablero {
         if(this.estaDisponible(posicion)){
             return Disparo.AGUA;
         }else {
+            Disparo resultado = this.posiciones[posicion.getFila()][posicion.getColumna()].getBarco().recibirDisparo();
             this.posiciones[posicion.getFila()][posicion.getColumna()].setAgua();
-            return Disparo.HUNDIDO;
+            return resultado;
         }
     }
 

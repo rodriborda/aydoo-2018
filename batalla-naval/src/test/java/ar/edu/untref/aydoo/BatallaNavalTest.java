@@ -82,7 +82,7 @@ public class BatallaNavalTest {
     public void ponerUnCruceroYVerQueAmbasPosicionesEstanOcupadas(){
         Posicion primeraPosicion = new Posicion(1,1);
         Posicion segundaPosicion = new Posicion(1,2);
-        Crucero crucero = new Crucero();
+        Crucero crucero = new Crucero("crucero");
 
         this.unTablero.ponerCrucero(crucero, primeraPosicion, Orientacion.HORIZONTAL);
 
@@ -96,11 +96,23 @@ public class BatallaNavalTest {
     public void ponerUnCruceroEnPosicionVertical(){
         Posicion primeraPosicion = new Posicion(1,1);
         Posicion segundaPosicion = new Posicion(2,1);
-        Crucero crucero = new Crucero();
+        Crucero crucero = new Crucero("crucero");
 
         this.unTablero.ponerCrucero(crucero, primeraPosicion, Orientacion.VERTICAL);
 
         Assert.assertFalse(this.unTablero.estaDisponible(primeraPosicion));
         Assert.assertFalse(this.unTablero.estaDisponible(segundaPosicion));
+    }
+
+    @Test
+    public void dispararUnaVezAUnCruceroDevuelveTocado(){
+        Posicion primeraPosicion = new Posicion(1,1);
+        Crucero crucero = new Crucero("crucero");
+        this.unTablero.ponerCrucero(crucero, primeraPosicion, Orientacion.HORIZONTAL);
+
+        Disparo resultado = this.unTablero.disparar(primeraPosicion);
+
+        Assert.assertEquals(Disparo.TOCADO, resultado);
+
     }
 }
