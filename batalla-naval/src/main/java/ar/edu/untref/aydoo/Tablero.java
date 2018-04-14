@@ -29,11 +29,11 @@ public class Tablero {
         return this.posiciones[posicion.getPosicionVertical()][posicion.getPosicionHorizontal()].getBote();
     }
 
-    public String disparar(Posicion posicion) {
+    public Disparo disparar(Posicion posicion) {
         if(this.estaDisponible(posicion)){
-            return "Agua";
+            return Disparo.AGUA;
         }else {
-            return "Hundido";
+            return Disparo.HUNDIDO;
         }
     }
 }

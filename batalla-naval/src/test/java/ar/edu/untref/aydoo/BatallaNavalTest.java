@@ -13,7 +13,7 @@ public class BatallaNavalTest {
     }
 
     @Test
-    public void ponerBoteEnTablero() {
+    public void ponerBoteEnTableroYDevolverQueNoEstaDisponible() {
 
         Bote unBote = new Bote("Barco");
         Posicion posicion = new Posicion(1, 1);
@@ -49,9 +49,9 @@ public class BatallaNavalTest {
     public void dispararEnPosicionVaciaDevuelveAgua(){
         Posicion posicion = new Posicion(1,1);
 
-        String resultado = this.unTablero.disparar(posicion);
+        Disparo resultado = this.unTablero.disparar(posicion);
 
-        Assert.assertEquals("Agua", resultado);
+        Assert.assertEquals(Disparo.AGUA, resultado);
     }
 
     @Test
@@ -60,9 +60,9 @@ public class BatallaNavalTest {
         Bote bote = new Bote("Bote");
 
         this.unTablero.ponerBote(bote, posicion);
-        String resultado = this.unTablero.disparar(posicion);
+        Disparo resultado = this.unTablero.disparar(posicion);
 
-        Assert.assertEquals("Hundido", resultado);
+        Assert.assertEquals(Disparo.HUNDIDO, resultado);
 
     }
 
