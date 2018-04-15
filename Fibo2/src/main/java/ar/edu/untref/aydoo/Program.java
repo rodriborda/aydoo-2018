@@ -9,12 +9,22 @@ public class Program {
 
         Fibonachi fibo = new Fibonachi();
 
-        System.out.print("fibo<" + arg[0] + ">: ");
-
-        for (int i = 0; i < Integer.parseInt(arg[0]); i++) {
-            System.out.print(fibo.calcularFibonachi(i) + " ");
+        switch (arg[0]){
+            case "-o=hd":
+                System.out.print("fibo<" + arg[1] + ">: ");
+                for (int i = 0; i < Integer.parseInt(arg[1]); i++) {
+                    System.out.print(fibo.calcularFibonachi(i) + " ");
+                }
+                break;
+            case "-o=vd":
+                System.out.print("fibo<" + arg[1] + ">: ");
+                for (int i = 0; i < Integer.parseInt(arg[1]); i++) {
+                    System.out.println();
+                    System.out.println(fibo.calcularFibonachi(i));
+                }
+                break;
         }
-
+        
         System.out.println();
     }
 }
