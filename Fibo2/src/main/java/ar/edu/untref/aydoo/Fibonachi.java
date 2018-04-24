@@ -14,7 +14,7 @@ public class Fibonachi {
 
     public void fibonachiHorizontalDirecto(int numero) {
         for (int i = 0; i < numero; i++) {
-            System.out.print(this.calcularFibonachi(i) + " ");
+            System.out.print(" " + this.calcularFibonachi(i));
         }
     }
 
@@ -22,7 +22,7 @@ public class Fibonachi {
         this.inversor(numero);
 
         for (int i = numero - 1; i >= 0; i--) {
-            System.out.print(resultado[i] + " ");
+            System.out.print(" " + resultado[i]);
         }
     }
 
