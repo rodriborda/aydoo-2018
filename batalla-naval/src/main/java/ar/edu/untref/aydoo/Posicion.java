@@ -4,17 +4,15 @@ public class Posicion {
 
     private int fila;
     private int columna;
-    private boolean vacio;
     private Barco barco;
 
     public Posicion(int fila, int columna) {
         this.columna = columna;
         this.fila = fila;
-        this.vacio = true;
     }
 
     public boolean esAgua() {
-        return this.vacio;
+        return this.barco==null;
     }
 
     public int getFila() {
@@ -26,24 +24,28 @@ public class Posicion {
     }
 
     public void setAgua() {
-        this.vacio = true;
-    }
-
-    public String getNombreBarco() {
-        return this.barco.getNombre();
+        this.barco = null;
     }
 
     public void setBote(Bote unBote){
         this.barco = unBote;
-        this.vacio = false;
     }
 
     public void setCrucero(Crucero crucero) {
         this.barco = crucero;
-        this.vacio = false;
     }
 
     public Barco getBarco(){
         return this.barco;
+    }
+
+    public ResultadoDisparo recibirDisparo(){
+        if (this.esAgua()) {
+            return ResultadoDisparo.AGUA;
+        } else {
+            ResultadoDisparo resultado = this.barco.recibirDisparo();
+            this.setAgua();
+            return resultado;
+        }
     }
 }

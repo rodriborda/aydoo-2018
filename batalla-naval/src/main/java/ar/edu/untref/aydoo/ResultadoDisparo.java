@@ -1,6 +1,6 @@
 package ar.edu.untref.aydoo;
 
-public enum Disparo {
+public enum ResultadoDisparo {
     AGUA,
     TOCADO,
     HUNDIDO

@@ -14,16 +14,15 @@ public class BatallaNavalTest {
         this.posicionInicial = new Posicion(1, 1);
     }
 
-
     @Test
-    public void tableroVacioTodasLasPosicionesLibres() {
+    public void unaPosicionSinBarcoDeberiaEstarDisponible() {
 
         Assert.assertTrue(this.unTablero.estaDisponible(this.posicionInicial));
     }
 
     @Test
     public void ponerBoteEnTableroYDevolverQueNoEstaDisponible() {
-        Bote unBote = new Bote("Barco");
+        Bote unBote = new Bote();
 
         this.unTablero.ponerBote(unBote, this.posicionInicial);
 
@@ -32,20 +31,20 @@ public class BatallaNavalTest {
 
     @Test
     public void intentarPoner2BotesEnLaMismaPosicionSoloPoneElPrimero() {
-        Bote bote1 = new Bote("Barquito");
-        Bote bote2 = new Bote("Barco");
+        Bote bote1 = new Bote();
+        Bote bote2 = new Bote();
 
         this.unTablero.ponerBote(bote1, this.posicionInicial);
         this.unTablero.ponerBote(bote2, this.posicionInicial);
 
-        Assert.assertEquals(bote1.getNombre(), this.unTablero.getBarco(this.posicionInicial));
+        Assert.assertEquals(bote1, this.unTablero.getBarco(this.posicionInicial));
     }
 
     @Test
     public void ponerUnCruceroYVerQueAmbasPosicionesEstanOcupadas(){
         Posicion segundaPosicion = new Posicion(1,2);
-        Posicion posicionLibre = new Posicion(2,1); //Si se coloca horizontalmente esta posicion debe estar libre
-        Crucero crucero = new Crucero("crucero");
+        Posicion posicionLibre = new Posicion(2,1);
+        Crucero crucero = new Crucero();
 
         this.unTablero.ponerCrucero(crucero, this.posicionInicial, Orientacion.HORIZONTAL);
 
@@ -57,8 +56,8 @@ public class BatallaNavalTest {
     @Test
     public void ponerUnCruceroEnPosicionVertical(){
         Posicion segundaPosicion = new Posicion(2,1);
-        Posicion posicionLibre = new Posicion(1,2); //Si se coloca verticalmente esta posicion debe estar libre
-        Crucero crucero = new Crucero("crucero");
+        Posicion posicionLibre = new Posicion(1,2);
+        Crucero crucero = new Crucero();
 
         this.unTablero.ponerCrucero(crucero, this.posicionInicial, Orientacion.VERTICAL);
 
@@ -71,24 +70,24 @@ public class BatallaNavalTest {
     @Test
     public void dispararEnPosicionVaciaDevuelveAgua(){
 
-        Disparo resultado = this.unTablero.disparar(this.posicionInicial);
+        ResultadoDisparo resultado = this.unTablero.disparar(this.posicionInicial);
 
-        Assert.assertEquals(Disparo.AGUA, resultado);
+        Assert.assertEquals(ResultadoDisparo.AGUA, resultado);
     }
 
     @Test
     public void dispararEnPosicionOcupadaDevuelveHundido(){
-        Bote bote = new Bote("Bote");
+        Bote bote = new Bote();
 
         this.unTablero.ponerBote(bote, this.posicionInicial);
-        Disparo resultado = this.unTablero.disparar(this.posicionInicial);
+        ResultadoDisparo resultado = this.unTablero.disparar(this.posicionInicial);
 
-        Assert.assertEquals(Disparo.HUNDIDO, resultado);
+        Assert.assertEquals(ResultadoDisparo.HUNDIDO, resultado);
     }
 
     @Test
     public void dispararAUnBoteLoQuitaDelTablero(){
-        Bote bote = new Bote("Bote");
+        Bote bote = new Bote();
 
         this.unTablero.ponerBote(bote, this.posicionInicial);
         this.unTablero.disparar(this.posicionInicial);
@@ -100,34 +99,34 @@ public class BatallaNavalTest {
 
     @Test
     public void dispararUnaVezAUnCruceroDevuelveTocado(){
-        Crucero crucero = new Crucero("crucero");
+        Crucero crucero = new Crucero();
         this.unTablero.ponerCrucero(crucero, this.posicionInicial, Orientacion.HORIZONTAL);
 
-        Disparo resultado = this.unTablero.disparar(this.posicionInicial);
+        ResultadoDisparo resultado = this.unTablero.disparar(this.posicionInicial);
 
-        Assert.assertEquals(Disparo.TOCADO, resultado);
+        Assert.assertEquals(ResultadoDisparo.TOCADO, resultado);
     }
 
     @Test
     public void dispararDosVecesUnCruceroEnLaMismaPosicionDevuelveAgua(){
-        Crucero crucero = new Crucero("crucero");
+        Crucero crucero = new Crucero();
         this.unTablero.ponerCrucero(crucero, this.posicionInicial, Orientacion.HORIZONTAL);
 
         this.unTablero.disparar(this.posicionInicial);
-        Disparo resultado = this.unTablero.disparar(this.posicionInicial);
+        ResultadoDisparo resultado = this.unTablero.disparar(this.posicionInicial);
 
-        Assert.assertEquals(Disparo.AGUA, resultado);
+        Assert.assertEquals(ResultadoDisparo.AGUA, resultado);
     }
 
     @Test
     public void dispararDosVecesAUnCruceroDevuelveHundido(){
         Posicion segundaPosicion = new Posicion(1,2);
-        Crucero crucero = new Crucero("crucero");
+        Crucero crucero = new Crucero();
         this.unTablero.ponerCrucero(crucero, this.posicionInicial, Orientacion.HORIZONTAL);
 
         this.unTablero.disparar(this.posicionInicial);
-        Disparo resultado = this.unTablero.disparar(segundaPosicion);
+        ResultadoDisparo resultado = this.unTablero.disparar(segundaPosicion);
 
-        Assert.assertEquals(Disparo.HUNDIDO, resultado);
+        Assert.assertEquals(ResultadoDisparo.HUNDIDO, resultado);
     }
 }

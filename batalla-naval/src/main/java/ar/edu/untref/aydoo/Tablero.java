@@ -42,20 +42,14 @@ public class Tablero {
 
     }
 
-    public String getBarco(Posicion posicion) {
+    public Barco getBarco(Posicion posicion) {
 
-        return this.posiciones[posicion.getFila()][posicion.getColumna()].getNombreBarco();
+        return this.posiciones[posicion.getFila()][posicion.getColumna()].getBarco();
 
     }
 
-    public Disparo disparar(Posicion posicion) {
-        if(this.estaDisponible(posicion)){
-            return Disparo.AGUA;
-        }else {
-            Disparo resultado = this.posiciones[posicion.getFila()][posicion.getColumna()].getBarco().recibirDisparo();
-            this.posiciones[posicion.getFila()][posicion.getColumna()].setAgua();
-            return resultado;
-        }
+    public ResultadoDisparo disparar(Posicion posicion) {
+        return this.posiciones[posicion.getFila()][posicion.getColumna()].recibirDisparo();
     }
 
 }
