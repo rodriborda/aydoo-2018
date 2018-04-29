@@ -32,4 +32,28 @@ public class CompraTest {
 
         Assert.assertEquals(484f, compra.calcularTotalAPagar(), 0.001);
     }
+
+    @Test
+    public void comprarUnArticuloDeLibreriaDevuelveElPrecioDeVentaConIva() {
+        Compra compra = new Compra();
+        Producto artLibreria = new ArticuloDeLibreria(200f);
+
+        compra.agregarProducto(artLibreria);
+
+        Assert.assertEquals(266.2, compra.calcularTotalAPagar(), 0.001);
+    }
+
+    @Test
+    public void comprarUnProductoYUnArticuloDeLibreriaSumaElPrecioCorrectoDeCadaUno() {
+        Compra compra = new Compra();
+        Producto libro = new Producto(200f);
+        Producto artLibreria = new ArticuloDeLibreria(200f);
+
+        compra.agregarProducto(libro);
+        compra.agregarProducto(artLibreria);
+
+        Assert.assertEquals(508.2, compra.calcularTotalAPagar(), 0.001);
+    }
+
+    
 }
