@@ -2,9 +2,13 @@ package ar.edu.untref.aydoo;
 
 public class Producto {
 
-    private int precio;
+    private Float precio;
 
-    public Producto(int precio) {
+    public Producto(Float precio) {
         this.precio = precio;
+    }
+
+    public Float getPrecio() {
+        return this.precio;
     }
 }

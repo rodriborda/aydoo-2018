@@ -24,7 +24,7 @@ public class LibreriaTest {
         Cliente cliente = new Cliente();
         int mes = 1;
         Compra compraCliente = new Compra();
-        Producto libro = new Producto(200);
+        Producto libro = new Producto(200f);
 
         compraCliente.agregarProducto(libro);
         Float importeACobrar = libreria.cobrarMes(mes, cliente);
