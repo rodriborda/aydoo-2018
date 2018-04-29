@@ -2,20 +2,23 @@ package ar.edu.untref.aydoo;
 
 public class Crucero extends Barco{
 
-    private int disparosRecividos;
-
     public Crucero(){
-        this.disparosRecividos = 0;
+        super.disparosRecividos = 0;
         super.cantidadDePosiciones = 2;
     }
 
     @Override
     public ResultadoDisparo recibirDisparo() {
-        if(this.disparosRecividos < 1){
-            this.disparosRecividos++;
+        if(super.disparosRecividos < 1){
+            super.disparosRecividos++;
             return ResultadoDisparo.TOCADO;
         }else {
             return ResultadoDisparo.HUNDIDO;
         }
+    }
+
+    @Override
+    public int getDisparosRecividos() {
+        return super.disparosRecividos;
     }
 }
