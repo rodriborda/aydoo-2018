@@ -14,24 +14,32 @@ public class Tablero {
         }
     }
 
-    public void ponerBote(Bote unBote, Posicion posicion) {
-        if(this.estaDisponible(posicion)){
-            this.posiciones[posicion.getFila()][posicion.getColumna()].setBote(unBote);
+    public void ponerBote(Bote unBote, Posicion posicion) throws ArrayIndexOutOfBoundsException {
+        try {
+            if(this.estaDisponible(posicion)){
+                this.posiciones[posicion.getFila()][posicion.getColumna()].setBarco(unBote);
+            }
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new ArrayIndexOutOfBoundsException("La posicion ingresada esta fuera de los limites del tablero");
         }
+
     }
 
-    public void ponerCrucero(Crucero unCrucero, Posicion primeraPosicion, Orientacion orientacion) {
-
-        if(orientacion==Orientacion.HORIZONTAL){
-            if(this.estaDisponible(primeraPosicion) && this.posiciones[primeraPosicion.getFila()][primeraPosicion.getColumna() + 1].esAgua()){
-                this.posiciones[primeraPosicion.getFila()][primeraPosicion.getColumna()].setCrucero(unCrucero);
-                this.posiciones[primeraPosicion.getFila()][primeraPosicion.getColumna() + 1].setCrucero(unCrucero);
+    public void ponerCrucero(Crucero unCrucero, Posicion primeraPosicion, Orientacion orientacion) throws ArrayIndexOutOfBoundsException {
+        try {
+            if(orientacion==Orientacion.HORIZONTAL){
+                if(this.estaDisponible(primeraPosicion) && this.posiciones[primeraPosicion.getFila()][primeraPosicion.getColumna() + 1].esAgua()){
+                    this.posiciones[primeraPosicion.getFila()][primeraPosicion.getColumna()].setBarco(unCrucero);
+                    this.posiciones[primeraPosicion.getFila()][primeraPosicion.getColumna() + 1].setBarco(unCrucero);
+                }
+            }else {
+                if(this.estaDisponible(primeraPosicion) && this.posiciones[primeraPosicion.getFila() + 1][primeraPosicion.getColumna()].esAgua()){
+                    this.posiciones[primeraPosicion.getFila()][primeraPosicion.getColumna()].setBarco(unCrucero);
+                    this.posiciones[primeraPosicion.getFila() + 1][primeraPosicion.getColumna()].setBarco(unCrucero);
+                }
             }
-        }else {
-            if(this.estaDisponible(primeraPosicion) && this.posiciones[primeraPosicion.getFila() + 1][primeraPosicion.getColumna()].esAgua()){
-                this.posiciones[primeraPosicion.getFila()][primeraPosicion.getColumna()].setCrucero(unCrucero);
-                this.posiciones[primeraPosicion.getFila() + 1][primeraPosicion.getColumna()].setCrucero(unCrucero);
-            }
+        } catch (ArrayIndexOutOfBoundsException exception) {
+            throw new ArrayIndexOutOfBoundsException("La posicion ingresada esta fuera de los limites del tablero");
         }
 
     }

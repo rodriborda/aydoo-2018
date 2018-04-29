@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class BatallaNavalTest {
+public class TableroTest {
     private Tablero unTablero;
     private Posicion posicionInicial;
 
@@ -38,6 +38,7 @@ public class BatallaNavalTest {
         this.unTablero.ponerBote(bote2, this.posicionInicial);
 
         Assert.assertEquals(bote1, this.unTablero.getBarco(this.posicionInicial));
+        Assert.assertNotEquals(bote2, this.unTablero.getBarco(this.posicionInicial));
     }
 
     @Test
@@ -95,8 +96,6 @@ public class BatallaNavalTest {
         Assert.assertTrue(this.unTablero.estaDisponible(this.posicionInicial));
     }
 
-
-
     @Test
     public void dispararUnaVezAUnCruceroDevuelveTocado(){
         Crucero crucero = new Crucero();
@@ -128,5 +127,68 @@ public class BatallaNavalTest {
         ResultadoDisparo resultado = this.unTablero.disparar(segundaPosicion);
 
         Assert.assertEquals(ResultadoDisparo.HUNDIDO, resultado);
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void intentarPonerBarcoEnPosicionInvalidaDevuelveExcepcion() throws ArrayIndexOutOfBoundsException{
+        Posicion posicionInvalida = new Posicion(11,2);
+        Bote bote = new Bote();
+
+        this.unTablero.ponerBote(bote, posicionInvalida);
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void intentarPonerUnCruceroHorizontalmenteContraElBordeDerechoDevuelveExcepcion() throws ArrayIndexOutOfBoundsException{
+        Posicion posicionInvalida = new Posicion(1,10);
+        Crucero crucero = new Crucero();
+
+        this.unTablero.ponerCrucero(crucero, posicionInvalida, Orientacion.HORIZONTAL);
+    }
+
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void intentarPonerUnCruceroVerticalmenteContraElBordeInferiorDevuelveExcepcion() throws ArrayIndexOutOfBoundsException{
+        Posicion posicionInvalida = new Posicion(10,1);
+        Crucero crucero = new Crucero();
+
+        this.unTablero.ponerCrucero(crucero, posicionInvalida, Orientacion.VERTICAL);
+    }
+
+    @Test
+    public void intentarPonerUnCruceroSobreUnBoteNoColocaElCrucero(){
+        Bote bote = new Bote();
+        Crucero crucero = new Crucero();
+
+        this.unTablero.ponerBote(bote, this.posicionInicial);
+        this.unTablero.ponerCrucero(crucero, this.posicionInicial, Orientacion.VERTICAL);
+
+        Assert.assertEquals(bote, this.unTablero.getBarco(this.posicionInicial));
+        Assert.assertNotEquals(crucero, this.unTablero.getBarco(this.posicionInicial));
+    }
+
+    @Test
+    public void colocarUnCruceroCuyaSegundaPosicionEstaOcupadaNoLoColoca(){
+        Bote bote = new Bote();
+        Crucero crucero = new Crucero();
+        Posicion posicionBote = new Posicion(1,2);
+
+        this.unTablero.ponerBote(bote, posicionBote);
+        this.unTablero.ponerCrucero(crucero, this.posicionInicial, Orientacion.HORIZONTAL);
+
+        Assert.assertEquals(bote, this.unTablero.getBarco(posicionBote));
+        Assert.assertNotEquals(crucero, this.unTablero.getBarco(posicionBote));
+        Assert.assertTrue(this.unTablero.estaDisponible(this.posicionInicial));
+    }
+
+    @Test
+    public void intentarPonerUnBoteenLaSegundaPosicionDeUnCruceroNoColocaElBote(){
+        Bote bote = new Bote();
+        Crucero crucero = new Crucero();
+        Posicion posicionBote = new Posicion(2,1);
+
+        this.unTablero.ponerCrucero(crucero, this.posicionInicial, Orientacion.VERTICAL);
+        this.unTablero.ponerBote(bote, posicionBote);
+
+        Assert.assertEquals(crucero, this.unTablero.getBarco(posicionBote));
+        Assert.assertNotEquals(bote, this.unTablero.getBarco(posicionBote));
     }
 }

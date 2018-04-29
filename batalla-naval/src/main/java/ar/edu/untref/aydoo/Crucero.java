@@ -6,6 +6,7 @@ public class Crucero extends Barco{
 
     public Crucero(){
         this.disparosRecividos = 0;
+        super.cantidadDePosiciones = 2;
     }
 
     @Override

@@ -27,19 +27,15 @@ public class Posicion {
         this.barco = null;
     }
 
-    public void setBote(Bote unBote){
-        this.barco = unBote;
-    }
-
-    public void setCrucero(Crucero crucero) {
-        this.barco = crucero;
+    public void setBarco(Barco barco) {
+        this.barco = barco;
     }
 
     public Barco getBarco(){
         return this.barco;
     }
 
-    public ResultadoDisparo recibirDisparo(){
+    public ResultadoDisparo recibirDisparo() {
         if (this.esAgua()) {
             return ResultadoDisparo.AGUA;
         } else {
