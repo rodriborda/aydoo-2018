@@ -7,10 +7,12 @@ public class Compra {
 
     private List<Producto> productos;
     private Cliente cliente;
+    private Fecha fecha;
 
-    public Compra(Cliente cliente){
+    public Compra(Cliente cliente, Fecha fecha){
         this.productos = new ArrayList<Producto>();
         this.cliente = cliente;
+        this.fecha = fecha;
     }
 
     public void agregarProducto(Producto producto) {
@@ -29,5 +31,13 @@ public class Compra {
         }
 
         return total * 1.21f;
+    }
+
+    public Integer getMes() {
+        return this.fecha.getMes();
+    }
+
+    public Cliente getCliente() {
+        return this.cliente;
     }
 }

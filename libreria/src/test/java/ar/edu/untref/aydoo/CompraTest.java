@@ -9,11 +9,12 @@ public class CompraTest {
 
     private Compra compra;
     private Cliente cliente;
-
+    private Fecha fecha;
     @Before
     public void setUp(){
         this.cliente = new Cliente();
-        this.compra = new Compra(this.cliente);
+        this.fecha = new Fecha(1);
+        this.compra = new Compra(this.cliente, this.fecha);
     }
 
     @Test

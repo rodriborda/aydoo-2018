@@ -6,4 +6,8 @@ public class Fecha {
     public Fecha(Integer mes) {
         this.mes = mes;
     }
+
+    public Integer getMes() {
+        return this.mes;
+    }
 }

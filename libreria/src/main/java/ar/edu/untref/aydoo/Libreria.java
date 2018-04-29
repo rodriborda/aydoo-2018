@@ -13,11 +13,13 @@ public class Libreria {
         this.compras = new ArrayList<Compra>();
     }
 
-    public Float cobrarMes(Fecha mes, Cliente unCliente) {
+    public Float cobrarMes(Fecha fecha, Cliente cliente) {
         Float totalAPagar = 0f;
 
         for (Compra compra: this.compras) {
-            totalAPagar += compra.calcularTotalAPagar();
+            if(compra.getMes()==fecha.getMes() && compra.getCliente()==cliente){
+                totalAPagar += compra.calcularTotalAPagar();
+            }
         }
 
         return totalAPagar;
