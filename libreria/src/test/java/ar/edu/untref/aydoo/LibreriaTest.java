@@ -23,7 +23,7 @@ public class LibreriaTest {
 
     @Test
     public void cobrarMesAUnClienteSinCompraDevuelveCero() {
-        Fecha fecha = new Fecha(1);
+        Fecha fecha = new Fecha(1,18);
 
         Float importeACobrar = this.libreria.cobrarMes(fecha, this.cliente);
 
@@ -32,7 +32,7 @@ public class LibreriaTest {
 
     @Test
     public void cobrarMesAClienteQueComproUnProductoDevuelveElPrecioConIva(){
-        Fecha fecha = new Fecha(1);
+        Fecha fecha = new Fecha(1,18);
         Compra compraCliente = new Compra(this.cliente, fecha);
         compraCliente.agregarProducto(this.producto);
         this.libreria.registrarCompra(compraCliente);
@@ -45,7 +45,7 @@ public class LibreriaTest {
 
     @Test
     public void dcwaee(){
-        Fecha fecha = new Fecha(1);
+        Fecha fecha = new Fecha(1,18);
         Compra compraCliente = new Compra(this.cliente, fecha);
         compraCliente.agregarProducto(this.artLibreria);
         this.libreria.registrarCompra(compraCliente);
@@ -58,7 +58,7 @@ public class LibreriaTest {
 
     @Test
     public void cobrarMesSoloCobraASuRespectivoCliente(){
-        Fecha fecha = new Fecha(1);
+        Fecha fecha = new Fecha(1,18);
         Compra compraCliente = new Compra(this.cliente, fecha);
         compraCliente.agregarProducto(this.producto);
         this.libreria.registrarCompra(compraCliente);
@@ -72,11 +72,11 @@ public class LibreriaTest {
 
     @Test
     public void cobrarAClienteUnMesSinCompraDevuelveCero(){
-        Fecha fecha = new Fecha(1);
+        Fecha fecha = new Fecha(1,18);
         Compra compraCliente = new Compra(this.cliente, fecha);
         compraCliente.agregarProducto(this.producto);
         this.libreria.registrarCompra(compraCliente);
-        Fecha nuevaFecha = new Fecha(2);
+        Fecha nuevaFecha = new Fecha(2,18);
 
         Float importeACobrar = this.libreria.cobrarMes(nuevaFecha, this.cliente);
 
@@ -85,7 +85,7 @@ public class LibreriaTest {
 
     @Test
     public void cobrarVariasComprasAUnMismoClienteEnElMismoMesDevuelveLaSumaTotal(){
-        Fecha fecha = new Fecha(1);
+        Fecha fecha = new Fecha(1,18);
         Compra primeraCompra = new Compra(this.cliente, fecha);
         primeraCompra.agregarProducto(this.producto);
         this.libreria.registrarCompra(primeraCompra);
@@ -100,8 +100,8 @@ public class LibreriaTest {
 
     @Test
     public void cobrarMesSoloCobraElTotalDelMesSeleccionado(){
-        Fecha fecha = new Fecha(1);
-        Fecha otraFecha = new Fecha(2);
+        Fecha fecha = new Fecha(1,18);
+        Fecha otraFecha = new Fecha(2,18);
         Compra primeraCompra = new Compra(this.cliente, fecha);
         primeraCompra.agregarProducto(this.producto);
         this.libreria.registrarCompra(primeraCompra);
@@ -116,4 +116,14 @@ public class LibreriaTest {
 
         Assert.assertEquals(508.2, importeACobrar, 0.001);
     }
+
+    @Test
+    public void wasd(){
+        Fecha fecha = new Fecha(1, 18);
+
+        Float importeACobrar = this.libreria.cobrarAnio(fecha, this.cliente);
+
+        Assert.assertEquals(0f, importeACobrar, 0.001);
+    }
+
 }

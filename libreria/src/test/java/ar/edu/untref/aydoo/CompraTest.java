@@ -13,7 +13,7 @@ public class CompraTest {
     @Before
     public void setUp(){
         this.cliente = new Cliente();
-        this.fecha = new Fecha(1);
+        this.fecha = new Fecha(1,18);
         this.compra = new Compra(this.cliente, this.fecha);
     }
 

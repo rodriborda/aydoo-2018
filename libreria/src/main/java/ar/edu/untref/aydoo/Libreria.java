@@ -33,4 +33,8 @@ public class Libreria {
     public void registrarCompra(Compra compra){
         this.compras.add(compra);
     }
+
+    public Float cobrarAnio(Fecha fecha, Cliente cliente) {
+        return 0f;
+    }
 }
