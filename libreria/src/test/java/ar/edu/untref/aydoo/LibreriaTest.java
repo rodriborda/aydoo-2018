@@ -10,7 +10,7 @@ public class LibreriaTest {
     public void cobrarMesAUnClienteSinCompraDevuelveCero() {
         Libreria libreria = new Libreria();
         Cliente cliente = new Cliente();
-        int mes = 1;
+        Fecha mes = new Fecha(1);
 
         Float importeACobrar = libreria.cobrarMes(mes, cliente);
 
@@ -18,15 +18,15 @@ public class LibreriaTest {
     }
 
     @Test
-    @Ignore
     public void cobrarMesAClienteQueComproUnProductoDevuelveElPrecioConIva(){
         Libreria libreria = new Libreria();
         Cliente cliente = new Cliente();
-        int mes = 1;
-        Compra compraCliente = new Compra();
+        Fecha mes = new Fecha(1);
+        Compra compraCliente = new Compra(cliente);
         Producto libro = new Producto(200f);
 
         compraCliente.agregarProducto(libro);
+        libreria.registrarCompra(compraCliente);
         Float importeACobrar = libreria.cobrarMes(mes, cliente);
 
         Assert.assertEquals(242f, importeACobrar, 0.001);

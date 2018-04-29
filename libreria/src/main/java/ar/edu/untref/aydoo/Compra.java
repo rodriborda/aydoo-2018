@@ -6,9 +6,11 @@ import java.util.List;
 public class Compra {
 
     private List<Producto> productos;
+    private Cliente cliente;
 
-    public Compra(){
+    public Compra(Cliente cliente){
         this.productos = new ArrayList<Producto>();
+        this.cliente = cliente;
     }
 
     public void agregarProducto(Producto producto) {
@@ -19,9 +21,13 @@ public class Compra {
         Float total = 0f;
 
         for (Producto producto : this.productos) {
-            total += producto.getPrecio() * 1.21f;
+            if(this.cliente.estaRegistrado()){
+                total += producto.getPrecio() - (producto.getPrecio() * 0.05f);
+            } else {
+                total += producto.getPrecio();
+            }
         }
 
-        return total;
+        return total * 1.21f;
     }
 }

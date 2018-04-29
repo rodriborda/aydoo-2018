@@ -1,59 +1,99 @@
 package ar.edu.untref.aydoo;
 
 import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class CompraTest {
 
+    private Compra compra;
+    private Cliente cliente;
+
+    @Before
+    public void setUp(){
+        this.cliente = new Cliente();
+        this.compra = new Compra(this.cliente);
+    }
+
     @Test
     public void calcularTotalAPagarSinAgregarProductosDevuelveCero(){
-        Compra compra = new Compra();
 
-        Assert.assertEquals(0f, compra.calcularTotalAPagar(), 0.001);
+        Assert.assertEquals(0f, this.compra.calcularTotalAPagar(), 0.001);
     }
 
     @Test
     public void calcularTotalAPagarConUnProductoDevuelveElPrecioConIva(){
-        Compra compra = new Compra();
         Producto libro = new Producto(200f);
 
-        compra.agregarProducto(libro);
+        this.compra.agregarProducto(libro);
 
-        Assert.assertEquals(242f, compra.calcularTotalAPagar(), 0.001);
+        Assert.assertEquals(242f, this.compra.calcularTotalAPagar(), 0.001);
     }
 
     @Test
     public void calcularTotalAPagarComprandoDosProductosDevuelveLaSumaDeAmbos(){
-        Compra compra = new Compra();
         Producto libro = new Producto(200f);
 
-        compra.agregarProducto(libro);
-        compra.agregarProducto(libro);
+        this.compra.agregarProducto(libro);
+        this.compra.agregarProducto(libro);
 
-        Assert.assertEquals(484f, compra.calcularTotalAPagar(), 0.001);
+        Assert.assertEquals(484f, this.compra.calcularTotalAPagar(), 0.001);
     }
 
     @Test
     public void comprarUnArticuloDeLibreriaDevuelveElPrecioDeVentaConIva() {
-        Compra compra = new Compra();
         Producto artLibreria = new ArticuloDeLibreria(200f);
 
-        compra.agregarProducto(artLibreria);
+        this.compra.agregarProducto(artLibreria);
 
-        Assert.assertEquals(266.2, compra.calcularTotalAPagar(), 0.001);
+        Assert.assertEquals(266.2, this.compra.calcularTotalAPagar(), 0.001);
     }
 
     @Test
     public void comprarUnProductoYUnArticuloDeLibreriaSumaElPrecioCorrectoDeCadaUno() {
-        Compra compra = new Compra();
         Producto libro = new Producto(200f);
         Producto artLibreria = new ArticuloDeLibreria(200f);
 
-        compra.agregarProducto(libro);
-        compra.agregarProducto(artLibreria);
+        this.compra.agregarProducto(libro);
+        this.compra.agregarProducto(artLibreria);
 
-        Assert.assertEquals(508.2, compra.calcularTotalAPagar(), 0.001);
+        Assert.assertEquals(508.2, this.compra.calcularTotalAPagar(), 0.001);
     }
 
-    
+    @Test
+    public void compraDeUnProductoConClienteRegistradoDevuelvePrecioConDescuento() {
+        Producto libro = new Producto(200f);
+        Libreria libreria = new Libreria();
+        libreria.registrarCliente(this.cliente);
+
+        this.compra.agregarProducto(libro);
+
+        Assert.assertEquals(229.9, this.compra.calcularTotalAPagar(), 0.001);
+    }
+
+    @Test
+    public void compraDeArticuloDeLibreriaConClienteRegistradoDevuelvePrecioDeVentaConDescuento() {
+        Producto artLibreria = new ArticuloDeLibreria(200f);
+        Libreria libreria = new Libreria();
+        libreria.registrarCliente(this.cliente);
+
+        this.compra.agregarProducto(artLibreria);
+
+        Assert.assertEquals(252.89, this.compra.calcularTotalAPagar(), 0.001);
+    }
+
+    @Test
+    public void comprarVariosProductosAplicaDescuentoYDevuelveRespectivoPrecio(){
+        Producto libro = new Producto(200f);
+        Producto artLibreria = new ArticuloDeLibreria(200f);
+        Libreria libreria = new Libreria();
+        libreria.registrarCliente(this.cliente);
+
+        this.compra.agregarProducto(libro);
+        this.compra.agregarProducto(artLibreria);
+
+        Assert.assertEquals(482.79, this.compra.calcularTotalAPagar(), 0.001);
+    }
+
 }
