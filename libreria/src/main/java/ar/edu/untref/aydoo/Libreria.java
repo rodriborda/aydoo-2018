@@ -35,6 +35,14 @@ public class Libreria {
     }
 
     public Float cobrarAnio(Fecha fecha, Cliente cliente) {
-        return 0f;
+        Float totalAPagar = 0f;
+
+        for (Compra compra: this.compras) {
+            if(compra.getAnio()==fecha.getAnio() && compra.getCliente()==cliente){
+                totalAPagar += compra.calcularTotalAPagar();
+            }
+        }
+
+        return totalAPagar;
     }
 }

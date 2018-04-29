@@ -40,4 +40,8 @@ public class Compra {
     public Cliente getCliente() {
         return this.cliente;
     }
+
+    public Integer getAnio() {
+        return this.fecha.getAnio();
+    }
 }

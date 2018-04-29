@@ -118,12 +118,69 @@ public class LibreriaTest {
     }
 
     @Test
-    public void wasd(){
+    public void cobrarAnioAClienteSinComprasDevuelveCero(){
         Fecha fecha = new Fecha(1, 18);
 
         Float importeACobrar = this.libreria.cobrarAnio(fecha, this.cliente);
 
         Assert.assertEquals(0f, importeACobrar, 0.001);
+    }
+
+    @Test
+    public void cobrarAnioAClienteConUnaCompraDevuelveTotalAPagar(){
+        Fecha fecha = new Fecha(1, 18);
+        Compra compra = new Compra(this.cliente, fecha);
+        compra.agregarProducto(this.producto);
+        this.libreria.registrarCompra(compra);
+
+        Float importeACobrar = this.libreria.cobrarAnio(fecha, this.cliente);
+
+        Assert.assertEquals(242f, importeACobrar, 0.001);
+    }
+
+    @Test
+    public void cobrarAnioAClienteConDosComprasElMismoMesDevuelveTotalAPagar(){
+        Fecha fecha = new Fecha(1, 18);
+        Compra compra = new Compra(this.cliente, fecha);
+        compra.agregarProducto(this.producto);
+        compra.agregarProducto(this.producto);
+        this.libreria.registrarCompra(compra);
+
+        Float importeACobrar = this.libreria.cobrarAnio(fecha, this.cliente);
+
+        Assert.assertEquals(484f, importeACobrar, 0.001);
+    }
+
+    @Test
+    public void cobrarAnioAClienteConComprasDeDistintosMesesDevuelveLaSumaTotal(){
+        Fecha fecha = new Fecha(1, 18);
+        Fecha fecha2 = new Fecha(5, 18);
+        Compra primeraCompra = new Compra(this.cliente, fecha);
+        primeraCompra.agregarProducto(this.producto);
+        this.libreria.registrarCompra(primeraCompra);
+        Compra segundaCompra = new Compra(this.cliente, fecha2);
+        segundaCompra.agregarProducto(this.artLibreria);
+        this.libreria.registrarCompra(segundaCompra);
+
+        Float importeACobrar = this.libreria.cobrarAnio(fecha, this.cliente);
+
+        Assert.assertEquals(508.2, importeACobrar, 0.001);
+    }
+
+    @Test
+    public void cobrarAnioSoloCobraComprasDelAnioSeleccionado(){
+        Fecha fecha = new Fecha(1, 18);
+        Fecha fecha2 = new Fecha(5, 19);
+        Compra primeraCompra = new Compra(this.cliente, fecha);
+        primeraCompra.agregarProducto(this.producto);
+        this.libreria.registrarCompra(primeraCompra);
+        Compra segundaCompra = new Compra(this.cliente, fecha2);
+        segundaCompra.agregarProducto(this.artLibreria);
+        this.libreria.registrarCompra(segundaCompra);
+
+        Float importeACobrar = this.libreria.cobrarAnio(fecha, this.cliente);
+
+        Assert.assertEquals(242f, importeACobrar, 0.001);
     }
 
 }
