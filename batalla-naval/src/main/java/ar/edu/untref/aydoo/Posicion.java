@@ -15,9 +15,7 @@ public class Posicion {
         return this.barco==null;
     }
 
-    public int getFila() {
-        return fila;
-    }
+    public int getFila() { return fila; }
 
     public int getColumna() {
         return columna;
