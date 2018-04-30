@@ -31,7 +31,7 @@ public class LibreriaTest {
     }
 
     @Test
-    public void cobrarMesAClienteQueComproUnProductoDevuelveElPrecioConIva(){
+    public void cobrarMesAClienteQueComproUnProductoDevuelveElTotalAPagarDelMes(){
         Fecha fecha = new Fecha(1,18);
         Compra compraCliente = new Compra(this.cliente, fecha);
         compraCliente.agregarProducto(this.producto);
@@ -39,12 +39,12 @@ public class LibreriaTest {
 
         Float importeACobrar = this.libreria.cobrarMes(fecha, this.cliente);
 
-        Assert.assertEquals(242f, importeACobrar, 0.001);
+        Assert.assertEquals(200f, importeACobrar, 0.001);
 
     }
 
     @Test
-    public void dcwaee(){
+    public void cobrarMesAClienteQueComproUnArticuloDeLibreriaDevuelveElPrecioConIva(){
         Fecha fecha = new Fecha(1,18);
         Compra compraCliente = new Compra(this.cliente, fecha);
         compraCliente.agregarProducto(this.artLibreria);
@@ -52,7 +52,7 @@ public class LibreriaTest {
 
         Float importeACobrar = this.libreria.cobrarMes(fecha, this.cliente);
 
-        Assert.assertEquals(266.2, importeACobrar, 0.001);
+        Assert.assertEquals(242f, importeACobrar, 0.001);
 
     }
 
@@ -95,7 +95,7 @@ public class LibreriaTest {
 
         Float importeACobrar = this.libreria.cobrarMes(fecha, this.cliente);
 
-        Assert.assertEquals(508.2, importeACobrar, 0.001);
+        Assert.assertEquals(442f, importeACobrar, 0.001);
     }
 
     @Test
@@ -114,7 +114,7 @@ public class LibreriaTest {
 
         Float importeACobrar = this.libreria.cobrarMes(fecha, this.cliente);
 
-        Assert.assertEquals(508.2, importeACobrar, 0.001);
+        Assert.assertEquals(442f, importeACobrar, 0.001);
     }
 
     @Test
@@ -135,7 +135,7 @@ public class LibreriaTest {
 
         Float importeACobrar = this.libreria.cobrarAnio(fecha, this.cliente);
 
-        Assert.assertEquals(242f, importeACobrar, 0.001);
+        Assert.assertEquals(200f, importeACobrar, 0.001);
     }
 
     @Test
@@ -148,7 +148,7 @@ public class LibreriaTest {
 
         Float importeACobrar = this.libreria.cobrarAnio(fecha, this.cliente);
 
-        Assert.assertEquals(484f, importeACobrar, 0.001);
+        Assert.assertEquals(400f, importeACobrar, 0.001);
     }
 
     @Test
@@ -164,7 +164,7 @@ public class LibreriaTest {
 
         Float importeACobrar = this.libreria.cobrarAnio(fecha, this.cliente);
 
-        Assert.assertEquals(508.2, importeACobrar, 0.001);
+        Assert.assertEquals(442f, importeACobrar, 0.001);
     }
 
     @Test
@@ -180,7 +180,7 @@ public class LibreriaTest {
 
         Float importeACobrar = this.libreria.cobrarAnio(fecha, this.cliente);
 
-        Assert.assertEquals(242f, importeACobrar, 0.001);
+        Assert.assertEquals(200f, importeACobrar, 0.001);
     }
 
 }

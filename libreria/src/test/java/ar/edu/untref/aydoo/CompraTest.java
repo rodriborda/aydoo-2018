@@ -24,12 +24,12 @@ public class CompraTest {
     }
 
     @Test
-    public void calcularTotalAPagarConUnProductoDevuelveElPrecioConIva(){
+    public void calcularTotalAPagarConUnProductoDevuelveTotalAPagar(){
         Producto libro = new Producto(200f);
 
         this.compra.agregarProducto(libro);
 
-        Assert.assertEquals(242f, this.compra.calcularTotalAPagar(), 0.001);
+        Assert.assertEquals(200f, this.compra.calcularTotalAPagar(), 0.001);
     }
 
     @Test
@@ -39,7 +39,7 @@ public class CompraTest {
         this.compra.agregarProducto(libro);
         this.compra.agregarProducto(libro);
 
-        Assert.assertEquals(484f, this.compra.calcularTotalAPagar(), 0.001);
+        Assert.assertEquals(400f, this.compra.calcularTotalAPagar(), 0.001);
     }
 
     @Test
@@ -48,7 +48,7 @@ public class CompraTest {
 
         this.compra.agregarProducto(artLibreria);
 
-        Assert.assertEquals(266.2, this.compra.calcularTotalAPagar(), 0.001);
+        Assert.assertEquals(242f, this.compra.calcularTotalAPagar(), 0.001);
     }
 
     @Test
@@ -59,7 +59,7 @@ public class CompraTest {
         this.compra.agregarProducto(libro);
         this.compra.agregarProducto(artLibreria);
 
-        Assert.assertEquals(508.2, this.compra.calcularTotalAPagar(), 0.001);
+        Assert.assertEquals(442f, this.compra.calcularTotalAPagar(), 0.001);
     }
 
     @Test
@@ -70,7 +70,7 @@ public class CompraTest {
 
         this.compra.agregarProducto(libro);
 
-        Assert.assertEquals(229.9, this.compra.calcularTotalAPagar(), 0.001);
+        Assert.assertEquals(190f, this.compra.calcularTotalAPagar(), 0.001);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class CompraTest {
 
         this.compra.agregarProducto(artLibreria);
 
-        Assert.assertEquals(252.89, this.compra.calcularTotalAPagar(), 0.001);
+        Assert.assertEquals(229.9, this.compra.calcularTotalAPagar(), 0.001);
     }
 
     @Test
@@ -94,7 +94,53 @@ public class CompraTest {
         this.compra.agregarProducto(libro);
         this.compra.agregarProducto(artLibreria);
 
-        Assert.assertEquals(482.79, this.compra.calcularTotalAPagar(), 0.001);
+        Assert.assertEquals(419.9, this.compra.calcularTotalAPagar(), 0.001);
     }
 
+    @Test
+    public void comprarUnProductoPeriodicoSinSuscripcionDevuelveElTotalAPagar() {
+        Producto periodico = new ProductoPeriodico(300f,1);
+
+        this.compra.agregarProducto(periodico);
+
+        Assert.assertEquals(300f, this.compra.calcularTotalAPagar(), 0.001);
+    }
+
+    @Test
+    public void comprarUnProductoPeriodicoConSuscripcionDevuelveElPrecioConDescuento() {
+        ProductoPeriodico periodico = new ProductoPeriodico(300f,1);
+        Libreria libreria = new Libreria();
+        libreria.registrarSuscripcion(periodico, this.cliente);
+
+
+        this.compra.agregarProducto(periodico);
+
+        Assert.assertEquals(240f, this.compra.calcularTotalAPagar(), 0.001);
+    }
+
+    @Test
+    public void comprarProductoYProductoPeriodicoSoloAplicaDescuentoALaSuscripcion() {
+        ProductoPeriodico periodico = new ProductoPeriodico(300f,1);
+        Producto libro = new Producto(200f);
+        Libreria libreria = new Libreria();
+        libreria.registrarSuscripcion(periodico, this.cliente);
+
+        this.compra.agregarProducto(libro);
+        this.compra.agregarProducto(periodico);
+
+        Assert.assertEquals(440f, this.compra.calcularTotalAPagar(), 0.001);
+    }
+
+    @Test
+    public void comprarVariosProductosPeriodicosSoloAplicaDescuentoAlQueSeEstaSuscripto() {
+        ProductoPeriodico periodico = new ProductoPeriodico(300f,1);
+        ProductoPeriodico revista = new ProductoPeriodico(300f,1);
+        Libreria libreria = new Libreria();
+        libreria.registrarSuscripcion(periodico, this.cliente);
+
+        this.compra.agregarProducto(periodico);
+        this.compra.agregarProducto(revista);
+
+        Assert.assertEquals(540f, this.compra.calcularTotalAPagar(), 0.001);
+    }
 }

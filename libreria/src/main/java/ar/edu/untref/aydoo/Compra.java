@@ -23,14 +23,20 @@ public class Compra {
         Float total = 0f;
 
         for (Producto producto : this.productos) {
+            Float precio = producto.getPrecio();
+
+            if(this.cliente.estaSuscripto(producto)){
+                precio -= (precio * 0.20f);
+            }
+
             if(this.cliente.estaRegistrado()){
-                total += producto.getPrecio() - (producto.getPrecio() * 0.05f);
+                total += precio - (precio * 0.05f);
             } else {
-                total += producto.getPrecio();
+                total += precio;
             }
         }
 
-        return total * 1.21f;
+        return total;
     }
 
     public Integer getMes() {

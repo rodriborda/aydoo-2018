@@ -7,10 +7,13 @@ public class Libreria {
 
     private List<Cliente> clientes;
     private List<Compra> compras;
+    private List<Suscripcion> suscripciones;
 
     public Libreria(){
         this.clientes = new ArrayList<Cliente>();
         this.compras = new ArrayList<Compra>();
+        this.suscripciones = new ArrayList<Suscripcion>();
+
     }
 
     public Float cobrarMes(Fecha fecha, Cliente cliente) {
@@ -44,5 +47,11 @@ public class Libreria {
         }
 
         return totalAPagar;
+    }
+
+    public void registrarSuscripcion(ProductoPeriodico periodico, Cliente cliente) {
+        Suscripcion nuevaSuscripcion = new Suscripcion(periodico, cliente);
+        this.suscripciones.add(nuevaSuscripcion);
+        cliente.suscribir(nuevaSuscripcion);
     }
 }
