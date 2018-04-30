@@ -2,15 +2,15 @@ package ar.edu.untref.aydoo;
 
 public class Suscripcion {
 
-    private Producto periodico;
+    private Producto producto;
     private Cliente cliente;
 
-    public Suscripcion(ProductoPeriodico periodico, Cliente cliente) {
+    public Suscripcion(ProductoPeriodico producto, Cliente cliente) {
         this.cliente = cliente;
-        this.periodico = periodico;
+        this.producto = producto;
     }
 
     public Producto getProducto() {
-        return this.periodico;
+        return this.producto;
     }
 }
