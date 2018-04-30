@@ -15,7 +15,7 @@ public class LibreriaTest {
     @Before
     public void setUp(){
         this.libreria = new Libreria();
-        this.cliente = new Cliente();
+        this.cliente = new Cliente("Rodrigo","Olavarria 3369");
         this.producto = new Producto(200f);
         this.artLibreria = new ArticuloDeLibreria(200f);
 
@@ -62,7 +62,7 @@ public class LibreriaTest {
         Compra compraCliente = new Compra(this.cliente, fecha);
         compraCliente.agregarProducto(this.producto);
         this.libreria.registrarCompra(compraCliente);
-        Cliente otroCliente = new Cliente();
+        Cliente otroCliente = new Cliente("Daniel","Olavarria 3369");
 
         Float importeACobrar = this.libreria.cobrarMes(fecha, otroCliente);
 

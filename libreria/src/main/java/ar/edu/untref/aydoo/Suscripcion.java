@@ -10,10 +10,6 @@ public class Suscripcion {
         this.periodico = periodico;
     }
 
-    public Cliente getCliente() {
-        return this.cliente;
-    }
-
     public Producto getProducto() {
         return this.periodico;
     }

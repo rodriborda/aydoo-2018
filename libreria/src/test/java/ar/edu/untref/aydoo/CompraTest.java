@@ -12,7 +12,7 @@ public class CompraTest {
     private Fecha fecha;
     @Before
     public void setUp(){
-        this.cliente = new Cliente();
+        this.cliente = new Cliente("Rodrigo","Olavarria 3369");
         this.fecha = new Fecha(1,18);
         this.compra = new Compra(this.cliente, this.fecha);
     }
@@ -142,5 +142,29 @@ public class CompraTest {
         this.compra.agregarProducto(revista);
 
         Assert.assertEquals(540f, this.compra.calcularTotalAPagar(), 0.001);
+    }
+
+    @Test
+    public void comprarProductoPeriodicoSinSuscripcionConClienteRegistradoSoloAplicaDescuentoPorRegistro() {
+        ProductoPeriodico periodico = new ProductoPeriodico(300f,1);
+        Libreria libreria = new Libreria();
+        libreria.registrarCliente(this.cliente);
+
+        this.compra.agregarProducto(periodico);
+
+
+        Assert.assertEquals(285f, this.compra.calcularTotalAPagar(), 0.001);
+    }
+
+    @Test
+    public void comprarProductoPeriodicoConSuscripcionYClienteRegistradoAplicaAmbosDescuentos() {
+        ProductoPeriodico periodico = new ProductoPeriodico(300f,1);
+        Libreria libreria = new Libreria();
+        libreria.registrarCliente(this.cliente);
+        libreria.registrarSuscripcion(periodico, this.cliente);
+
+        this.compra.agregarProducto(periodico);
+
+        Assert.assertEquals(228f, this.compra.calcularTotalAPagar(), 0.001);
     }
 }
