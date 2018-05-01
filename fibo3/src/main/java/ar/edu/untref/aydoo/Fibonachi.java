@@ -3,6 +3,7 @@ package ar.edu.untref.aydoo;
 public class Fibonachi {
 
     private int[] resultado;
+    private String fibonacci;
 
     public int calcularFibonachi(int numero) {
         if (numero <= 1) {
@@ -12,34 +13,44 @@ public class Fibonachi {
         }
     }
 
-    public void fibonachiHorizontalDirecto(int numero) {
+    public String fibonachiHorizontalDirecto(int numero) {
+        this.fibonacci = "fibo<" + numero + ">:";
         for (int i = 0; i < numero; i++) {
-            System.out.print(" " + this.calcularFibonachi(i));
+            this.fibonacci += " " + this.calcularFibonachi(i);
         }
+        return this.fibonacci;
     }
 
-    public void fibonachiHorizontalInverso(int numero) {
+    public String fibonachiHorizontalInverso(int numero) {
+        this.fibonacci = "fibo<" + numero + ">:";
         this.inversor(numero);
 
         for (int i = numero - 1; i >= 0; i--) {
-            System.out.print(" " + resultado[i]);
+            this.fibonacci += " " + resultado[i];
         }
+
+        return this.fibonacci;
     }
 
-    public void fibonachiVerticalDirecto(int numero) {
+    public String fibonachiVerticalDirecto(int numero) {
+        this.fibonacci = "fibo<" + numero + ">:";
+
         for (int i = 0; i < numero; i++) {
-            System.out.println();
-            System.out.println(this.calcularFibonachi(i));
+            this.fibonacci += "\n" + this.calcularFibonachi(i);
         }
+
+        return this.fibonacci;
     }
 
-    public void fibonachiVerticalInverso(int numero) {
+    public String fibonachiVerticalInverso(int numero) {
+        this.fibonacci = "fibo<" + numero + ">:";
         this.inversor(numero);
 
         for (int i = numero - 1; i >= 0; i--) {
-            System.out.println();
-            System.out.println(resultado[i]);
+            this.fibonacci += "\n" + resultado[i];
         }
+
+        return this.fibonacci;
     }
 
     public void inversor(int numero) {
@@ -47,5 +58,17 @@ public class Fibonachi {
         for (int i = 0; i <= numero - 1; i++) {
             resultado[i] = this.calcularFibonachi(i);
         }
+    }
+
+    public String calcularSumaFibonachi(int numero) {
+        this.fibonacci = "fibo<" + numero + ">:s";
+
+        int total = 0;
+        for (int i = 0; i < numero; i++) {
+            total += this.calcularFibonachi(numero);
+        }
+
+        return this.fibonacci + " " + total;
+
     }
 }

@@ -18,35 +18,38 @@ public class Program {
         }
 
         if (arg.length == 1) {
-            System.out.print("fibo<" + arg[0] + ">:");
-            fibo.fibonachiHorizontalDirecto(Integer.parseInt(arg[0]));
+            String resultado = fibo.fibonachiHorizontalDirecto(Integer.parseInt(arg[0]));
+            System.out.println(resultado);
 
         } else {
 
             String opcion = arg[0];
             int numero = Integer.parseInt(arg[1]);
+            String resultado;
 
             switch (opcion) {
                 case "-o=hd":
-                    System.out.print("fibo<" + numero + ">:");
-                    fibo.fibonachiHorizontalDirecto(numero);
-                    System.out.println();
+                    resultado = fibo.fibonachiHorizontalDirecto(numero);
+                    System.out.println(resultado);
                     break;
 
                 case "-o=hi":
-                    System.out.print("fibo<" + numero + ">:");
-                    fibo.fibonachiHorizontalInverso(numero);
-                    System.out.println();
+                    resultado = fibo.fibonachiHorizontalInverso(numero);
+                    System.out.println(resultado);
                     break;
 
                 case "-o=vd":
-                    System.out.print("fibo<" + numero + ">:");
-                    fibo.fibonachiVerticalDirecto(numero);
+                    resultado = fibo.fibonachiVerticalDirecto(numero);
+                    System.out.println(resultado);
                     break;
 
                 case "-o=vi":
-                    System.out.print("fibo<" + numero + ">:");
-                    fibo.fibonachiVerticalInverso(numero);
+                    resultado = fibo.fibonachiVerticalInverso(numero);
+                    System.out.println(resultado);
+                    break;
+                case "-m":
+                    resultado = fibo.calcularSumaFibonachi(numero);
+                    System.out.println(resultado);
                     break;
                 default:
                     System.out.println("Opciones no validas");
@@ -55,7 +58,7 @@ public class Program {
         }
     }
 
-    static void validar(String[] args) {
+    private static void validar(String[] args) {
         if (args.length > 1) {
             try {
                 Integer.parseInt(args[1]);
