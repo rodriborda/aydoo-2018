@@ -9,10 +9,13 @@ public class Crucero extends Barco{
 
     @Override
     public ResultadoDisparo recibirDisparo() {
-        if(super.disparosRecividos < 1){
+        if (super.disparosRecividos == 0) {
             super.disparosRecividos++;
             return ResultadoDisparo.TOCADO;
-        }else {
+        } else if (super.disparosRecividos == 1) {
+            super.disparosRecividos++;
+            return ResultadoDisparo.HUNDIDO;
+        } else {
             return ResultadoDisparo.HUNDIDO;
         }
     }

@@ -9,6 +9,9 @@ public class Bote extends Barco{
 
     @Override
     public ResultadoDisparo recibirDisparo() {
+        if (super.disparosRecividos < 1) {
+            super.disparosRecividos++;
+        }
         return ResultadoDisparo.HUNDIDO;
     }
 
