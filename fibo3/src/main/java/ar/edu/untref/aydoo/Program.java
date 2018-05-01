@@ -1,5 +1,9 @@
 package ar.edu.untref.aydoo;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+
 public class Program {
 
     protected Program() {
@@ -51,11 +55,40 @@ public class Program {
                     resultado = fibo.calcularSumaFibonachi(numero);
                     System.out.println(resultado);
                     break;
+                case "-f":
+                    resultado = fibo.fibonachiVerticalInverso(numero);
+                    guardarEnArchivo(resultado);
+                    break;
                 default:
                     System.out.println("Opciones no validas");
                     break;
             }
         }
+    }
+
+    private static void guardarEnArchivo(String fibonacci) {
+        File archivo;
+        PrintWriter escribir;
+        archivo = new File("ejemplo.txt");
+
+        if (!archivo.exists()) {
+            try {
+                archivo.createNewFile();
+                System.out.println("Archivo creado");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try {
+            escribir = new PrintWriter(archivo, "utf-8");
+            escribir.println(fibonacci);
+            escribir.close();
+            System.out.println("Archivo guardado");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private static void validar(String[] args) {
