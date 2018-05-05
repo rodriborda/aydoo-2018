@@ -13,7 +13,6 @@ public class Program {
 
         Fibonachi fibo = new Fibonachi();
 
-
         try {
             validar(arg);
         } catch (Exception IllegalArgumentException) {
@@ -21,14 +20,16 @@ public class Program {
             return;
         }
 
-        if (arg.length == 1) {
-            String resultado = fibo.fibonachiHorizontalDirecto(Integer.parseInt(arg[0]));
+        int largo = arg.length;
+        int numero = Integer.parseInt(arg[largo - 1]);
+
+        if (largo == 1) {
+            String resultado = fibo.fibonachiHorizontalDirecto(numero);
             System.out.println(resultado);
 
         } else {
 
             String opcion = arg[0];
-            int numero = Integer.parseInt(arg[1]);
             String resultado;
 
             switch (opcion) {
@@ -92,18 +93,12 @@ public class Program {
     }
 
     private static void validar(String[] args) {
-        if (args.length > 1) {
-            try {
-                Integer.parseInt(args[1]);
-            } catch (Exception exception) {
-                throw new IllegalArgumentException();
-            }
-        } else {
-            try {
-                Integer.parseInt(args[0]);
-            } catch (Exception exception) {
-                throw new IllegalArgumentException();
-            }
+        int posicion = args.length - 1;
+
+        try {
+            Integer.parseInt(args[posicion]);
+        } catch (Exception exception) {
+            throw new IllegalArgumentException();
         }
     }
 

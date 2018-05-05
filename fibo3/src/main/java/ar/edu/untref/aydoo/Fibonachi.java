@@ -2,7 +2,7 @@ package ar.edu.untref.aydoo;
 
 public class Fibonachi {
 
-    private int[] resultado;
+    private int[] resultadoInverso;
     private String fibonacci;
 
     public int calcularFibonachi(int numero) {
@@ -26,7 +26,7 @@ public class Fibonachi {
         this.inversor(numero);
 
         for (int i = numero - 1; i >= 0; i--) {
-            this.fibonacci += " " + resultado[i];
+            this.fibonacci += " " + this.resultadoInverso[i];
         }
 
         return this.fibonacci;
@@ -47,21 +47,21 @@ public class Fibonachi {
         this.inversor(numero);
 
         for (int i = numero - 1; i >= 0; i--) {
-            this.fibonacci += "\n" + resultado[i];
+            this.fibonacci += "\n" + this.resultadoInverso[i];
         }
 
         return this.fibonacci;
     }
 
     public void inversor(int numero) {
-        this.resultado = new int[numero];
+        this.resultadoInverso = new int[numero];
         for (int i = 0; i <= numero - 1; i++) {
-            resultado[i] = this.calcularFibonachi(i);
+            this.resultadoInverso[i] = this.calcularFibonachi(i);
         }
     }
 
     public String calcularSumaFibonachi(int numero) {
-        this.fibonacci = "fibo<" + numero + ">:s";
+        this.fibonacci = "fibo<" + numero + ">s:";
 
         int total = 0;
         for (int i = 0; i < numero; i++) {
