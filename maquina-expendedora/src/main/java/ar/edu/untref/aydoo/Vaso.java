@@ -5,17 +5,27 @@ public class Vaso {
     private int cantidadDeAzucar = 0;
     private boolean cafe = false;
     private boolean te = false;
+    private boolean leche;
 
     public int getCantidadDeAzucar() {
         return this.cantidadDeAzucar;
     }
 
-    public void setCantidadDeAzucar(int cantidadDeAzucar){
-        this.cantidadDeAzucar = cantidadDeAzucar;
-    }
-
     public boolean tieneAzucar() {
         return this.cantidadDeAzucar > 0;
+    }
+
+    public boolean tieneCafe() {
+        return this.cafe;
+    }
+
+    public boolean tieneTe() {
+        return this.te;
+    }
+
+
+    public void setCantidadDeAzucar(int cantidadDeAzucar){
+        this.cantidadDeAzucar = cantidadDeAzucar;
     }
 
     public void agregarCafe(){
@@ -26,12 +36,11 @@ public class Vaso {
         this.te = true;
     }
 
-    public boolean tieneCafe() {
-        return this.cafe;
+    public void agregarLeche() {
+        this.leche = true;
     }
 
-
-    public boolean tieneTe() {
-        return this.te;
+    public boolean tieneLeche(){
+        return this.leche;
     }
 }
