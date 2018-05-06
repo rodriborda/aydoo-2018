@@ -22,4 +22,10 @@ public class Candidato {
 
         return votosPorProvincia;
     }
+
+    public int getCantidadVotos() {
+
+        return this.votos.size();
+
+    }
 }
