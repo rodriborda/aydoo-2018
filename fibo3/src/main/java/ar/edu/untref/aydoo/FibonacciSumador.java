@@ -27,7 +27,7 @@ public class FibonacciSumador {
 
         int total = 0;
         for (int i = 0; i < numero; i++) {
-            total += this.fibo.calcularFibonachi(numero);
+            total += this.fibo.calcularFibonachi(i);
         }
 
         return this.resultado + " " + total;
