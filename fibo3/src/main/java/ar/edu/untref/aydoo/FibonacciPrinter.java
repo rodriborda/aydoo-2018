@@ -6,7 +6,10 @@ import java.io.PrintWriter;
 
 public class FibonacciPrinter {
 
+    private int numero;
+
     public void imprimir(final String fibonacci, final String[] args) {
+        this.numero = Integer.parseInt(args[args.length - 1]);
         String opcion = args[1].substring(0, 2);
 
         if (opcion.equals("-f")) {
@@ -25,7 +28,6 @@ public class FibonacciPrinter {
         if (!archivo.exists()) {
             try {
                 archivo.createNewFile();
-                System.out.println("Archivo creado");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -35,7 +37,7 @@ public class FibonacciPrinter {
             escribir = new PrintWriter(archivo, "utf-8");
             escribir.println(fibonacci);
             escribir.close();
-            System.out.println("Archivo guardado");
+            System.out.println("fibo<" + this.numero + "> guardado en " + nombreArchivo);
         } catch (IOException e) {
             e.printStackTrace();
         }
