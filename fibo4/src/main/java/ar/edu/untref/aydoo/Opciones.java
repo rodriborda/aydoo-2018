@@ -8,11 +8,11 @@ public class Opciones {
     private Integer numero;
     private String archivo;
 
-    public Opciones(String[] entrada) {
-        for(int i = 0; i < entrada.length; i++) {
-            if(esParseable(entrada[i])) {
+    public Opciones(final String[] entrada) {
+        for (int i = 0; i < entrada.length; i++) {
+            if (esParseable(entrada[i])) {
                 numero = Integer.parseInt(entrada[i]);
-            } else if(entrada[i].contains("-o=")) {
+            } else if (entrada[i].contains("-o=")) {
                 orientacion = entrada[i].charAt(3);
                 direccion = entrada[i].charAt(4);
             } else if (entrada[i].contains("-f=")) {
@@ -29,10 +29,6 @@ public class Opciones {
 
     public char getDireccion() {
         return direccion;
-    }
-
-    public String getArchivo() {
-        return archivo;
     }
 
     public Integer getNumero() {
@@ -58,11 +54,11 @@ public class Opciones {
         return archivo;
     }
 
-    private boolean esParseable(String input){
+    private boolean esParseable(final String input) {
         boolean parsable = true;
-        try{
+        try {
             Integer.parseInt(input);
-        }catch(Exception e){
+        } catch (Exception e) {
             parsable = false;
         }
         return parsable;

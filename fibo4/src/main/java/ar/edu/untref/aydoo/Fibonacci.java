@@ -4,21 +4,17 @@ import java.io.*;
 
 public final class Fibonacci {
 
-    public Fibonacci() {
-
-    }
-
     public static void main(final String[] args) throws IOException {
         Integer numero;
         char orientacion;
         char direccion;
         char modo;
         String archivo;
-        boolean opcionValida = true;
+        boolean opcionValida;
         String textoDelResultado;
         Opciones opciones = new Opciones(args);
 
-        if ( args.length == 1) {
+        if (args.length == 1) {
             numero = Integer.parseInt(args[0]);
             orientacion = 'h';
             direccion = 'd';
@@ -35,8 +31,8 @@ public final class Fibonacci {
             opcionValida = opciones.opcionesValidas();
         }
 
-       if(opcionValida) {
-           if(modo == 's') {
+       if (opcionValida) {
+           if (modo == 's') {
                textoDelResultado = calcularSumatoria(numero).toString();
            } else {
                if (direccion == 'd') {
@@ -59,21 +55,25 @@ public final class Fibonacci {
         return resultado;
     }
 
-    private static void caratula(final Integer nro, final char orientacion, final char modo) {
+    private static String caratula(final Integer nro, final char orientacion, final char modo) {
+        String caratula = "fibo<" + nro + ">";
+
         if (orientacion == 'h') {
-            if(modo == 's' || modo == 'l') {
-                System.out.print("fibo<" + nro + ">" + modo +": ");
+            if (modo == 's' || modo == 'l') {
+                caratula = caratula + modo + ": ";
             } else {
-                System.out.print("fibo<" + nro + ">: ");
+                caratula = caratula + ": ";
             }
 
         } else {
-            if(modo == 's' || modo == 'l') {
-                System.out.println("fibo<" + nro + ">" + modo +":");
+            if (modo == 's' || modo == 'l') {
+                caratula = caratula + modo + ":\n";
             } else {
-                System.out.println("fibo<" + nro + ">:");
+                caratula = caratula + ":\n";
             }
         }
+
+        return caratula;
     }
 
     public static String menorMayor(final int entrada, final char orientacion) {
@@ -81,10 +81,10 @@ public final class Fibonacci {
         Integer resultado;
         for (int i = 0; i < entrada; i++) {
             resultado = getFibonacci(i);
-            if(i == entrada-1){
+            if (i == entrada - 1) {
                 textoDelResultado = textoDelResultado + resultado.toString();
             } else {
-                if(orientacion == 'h'){
+                if (orientacion == 'h') {
                     textoDelResultado = textoDelResultado + resultado.toString() + " ";
                 } else {
                     textoDelResultado = textoDelResultado + resultado.toString() + "\n";
@@ -100,10 +100,10 @@ public final class Fibonacci {
         Integer resultado;
         for (int i = entrada - 1; i >= 0; i--) {
             resultado = getFibonacci(i);
-            if(i == 0){
+            if (i == 0) {
                 textoDelResultado = textoDelResultado + resultado.toString();
             } else {
-                if(orientacion == 'h'){
+                if (orientacion == 'h') {
                     textoDelResultado = textoDelResultado + resultado.toString() + " ";
                 } else {
                     textoDelResultado = textoDelResultado + resultado.toString() + "\n";
@@ -128,43 +128,29 @@ public final class Fibonacci {
     }
 
     private static void mostrarResultado(final String texto, final String archivo, final char orientacion, final Integer numero, final char modo) throws IOException {
-        if(archivo == null) {
-            caratula(numero, orientacion, modo);
-            imprimir(texto, orientacion);
+        if (archivo == null) {
+            System.out.print(caratula(numero, orientacion, modo));
+            System.out.println(texto);
         } else {
-            System.out.print("fibo<" + numero + "> guardado en " + archivo);
-            escribirArchivo(texto, archivo,orientacion, numero, modo);
+            System.out.println("fibo<" + numero + "> guardado en " + archivo);
+            escribirArchivo(texto, archivo, orientacion, numero, modo);
         }
     }
 
-    private static void escribirArchivo(final String texto, final String archivo, final char orientacion, final Integer numero, final char modo) throws IOException{
+    private static void escribirArchivo(final String texto, final String archivo, final char orientacion, final Integer numero, final char modo) throws IOException {
         File archivoConResultado = new File(archivo);
         FileWriter escribidorArchivo = null;
-        try{
+        try {
             escribidorArchivo = new FileWriter(archivoConResultado);
             PrintWriter escribidor = new PrintWriter(escribidorArchivo);
-            if(modo == 's' || modo == 'l') {
-                escribidor.println("fibo<" + numero +">" + modo +":");
-            } else {
-                escribidor.println("fibo<" + numero +">:");
-            }
 
-            if(orientacion == 'h') {
-                escribidor.print(texto);
-            } else {
-                String[] partesDelTexto = texto.split("\\n");
-                for(int i = 0; i < partesDelTexto.length; i++) {
-                    escribidor.println(Integer.parseInt(partesDelTexto[i]));
-                }
-            }
-        }catch(IOException e){
+            escribidor.print(caratula(numero, orientacion, modo));
+            escribidor.print(texto);
+
+        } catch (IOException e) {
             throw e;
         } finally {
             escribidorArchivo.close();
         }
-    }
-
-    private static void imprimir(final String texto, final char orientacion) {
-        System.out.print(texto);
     }
 }
