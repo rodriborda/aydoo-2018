@@ -5,9 +5,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class GeneradorRespuesta {
+public class RespuestaPrinter {
 
     public void mostrarResultado(final String texto, final String archivo, final Integer numero, final char modo) throws IOException {
+
         if (archivo == null) {
             System.out.print(caratula(numero, modo));
             System.out.println(texto);
@@ -37,7 +38,7 @@ public class GeneradorRespuesta {
             PrintWriter escribidor = new PrintWriter(escribidorArchivo);
 
             escribidor.print(caratula(numero, modo));
-            escribidor.print(texto);
+            escribidor.println(texto);
 
         } catch (IOException e) {
             throw e;

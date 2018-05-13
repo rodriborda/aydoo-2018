@@ -49,19 +49,6 @@ public class Opciones {
         return numero;
     }
 
-    public boolean opcionesValidas() {
-        boolean opcionValida = true;
-
-        if (((orientacion != 'h' && orientacion != 'v' && orientacion != 'p' && orientacion != '\0')
-                || (direccion != 'd' && direccion != 'i' && direccion != '\0'))
-                || (numero == null)
-                || (modo != 's' && modo != 'l' && modo != '\0')
-                || (par != 'p' && par != '\0')){
-            opcionValida = false;
-        }
-        return opcionValida;
-    }
-
     public char getModo() {
         return modo;
     }

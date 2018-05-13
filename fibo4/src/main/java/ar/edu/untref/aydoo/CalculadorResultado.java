@@ -1,11 +1,11 @@
 package ar.edu.untref.aydoo;
 
-public class Resultados {
+public class CalculadorResultado {
 
     private CalculadorSecuencia calculador;
     private String textoDelResultado;
 
-    public Resultados(){
+    public CalculadorResultado(){
         this.calculador = new CalculadorSecuencia();
         this.textoDelResultado = "";
     }
