@@ -5,10 +5,18 @@ public class Opciones {
     private char orientacion;
     private char direccion;
     private char modo;
+    private char par;
     private Integer numero;
     private String archivo;
 
     public Opciones(final String[] entrada) {
+        this.orientacion = 'h';
+        this.direccion = 'd';
+
+        this.asignarOpciones(entrada);
+    }
+
+    private void asignarOpciones(final String[] entrada){
         for (int i = 0; i < entrada.length; i++) {
             if (esParseable(entrada[i])) {
                 numero = Integer.parseInt(entrada[i]);
@@ -19,6 +27,8 @@ public class Opciones {
                 archivo = entrada[i].substring(3);
             } else if (entrada[i].contains("-m=")) {
                 modo = entrada[i].charAt(3);
+            } else if (entrada[i].contains("-n=")) {
+                par = entrada[i].charAt(3);
             }
         }
     }
@@ -31,6 +41,10 @@ public class Opciones {
         return direccion;
     }
 
+    public char getPar() {
+        return par;
+    }
+
     public Integer getNumero() {
         return numero;
     }
@@ -38,9 +52,11 @@ public class Opciones {
     public boolean opcionesValidas() {
         boolean opcionValida = true;
 
-        if (((orientacion != 'h' && orientacion != 'v')
-                || (direccion != 'd' && direccion != 'i'))
-                || (numero == null)) {
+        if (((orientacion != 'h' && orientacion != 'v' && orientacion != 'p' && orientacion != '\0')
+                || (direccion != 'd' && direccion != 'i' && direccion != '\0'))
+                || (numero == null)
+                || (modo != 's' && modo != 'l' && modo != '\0')
+                || (par != 'p' && par != '\0')){
             opcionValida = false;
         }
         return opcionValida;
