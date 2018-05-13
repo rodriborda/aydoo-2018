@@ -10,7 +10,7 @@ public class CalculadorResultado {
         this.textoDelResultado = "";
     }
 
-    public String getResultado(final char orientacion, final char modo,final int numero, final char direccion, final char par){
+    public String getResultado(final char orientacion, final char modo,final int numero, final char direccion, final char par) {
         if (orientacion == 'h') {
             this.horizontal(numero, direccion);
         } else if (orientacion == 'v') {

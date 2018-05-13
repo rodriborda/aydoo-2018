@@ -8,13 +8,13 @@ import java.io.PrintWriter;
 public class RespuestaPrinter {
 
     public void mostrarResultado(final String texto, final String archivo, final Integer numero, final char modo) throws IOException {
+        String resultado = caratula(numero, modo) + texto;
 
         if (archivo == null) {
-            System.out.print(caratula(numero, modo));
-            System.out.println(texto);
+            System.out.println(resultado);
         } else {
             System.out.println("fibo<" + numero + "> guardado en " + archivo);
-            escribirArchivo(texto, archivo, numero, modo);
+            escribirArchivo(resultado, archivo);
         }
     }
 
@@ -30,15 +30,13 @@ public class RespuestaPrinter {
         return caratula;
     }
 
-    private void escribirArchivo(final String texto, final String archivo, final Integer numero, final char modo) throws IOException {
+    private void escribirArchivo(final String resultado, final String archivo) throws IOException {
         File archivoConResultado = new File(archivo);
         FileWriter escribidorArchivo = null;
         try {
             escribidorArchivo = new FileWriter(archivoConResultado);
             PrintWriter escribidor = new PrintWriter(escribidorArchivo);
-
-            escribidor.print(caratula(numero, modo));
-            escribidor.println(texto);
+            escribidor.println(resultado);
 
         } catch (IOException e) {
             throw e;

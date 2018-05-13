@@ -8,7 +8,7 @@ public class ValidadorOpciones {
     private char par;
     private Integer numero;
 
-    public ValidadorOpciones(final Opciones opciones){
+    public ValidadorOpciones(final Opciones opciones) {
         this.orientacion = opciones.getOrientacion();
         this.direccion = opciones.getDireccion();
         this.modo = opciones.getModo();
@@ -21,7 +21,7 @@ public class ValidadorOpciones {
                 || (direccion != 'd' && direccion != 'i' && direccion != '\0'))
                 || (numero == null)
                 || (modo != 's' && modo != 'l' && modo != '\0')
-                || (par != 'p' && par != '\0')){
+                || (par != 'p' && par != '\0')) {
             throw new OpcionesInvalidasException("Opciones no validas.");
         }
     }
