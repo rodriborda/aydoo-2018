@@ -1,6 +1,6 @@
 package ar.edu.untref.aydoo;
 
-import java.io.*;
+import java.io.IOException;
 
 public final class Fibonacci {
 

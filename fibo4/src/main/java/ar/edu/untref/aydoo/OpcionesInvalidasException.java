@@ -2,7 +2,7 @@ package ar.edu.untref.aydoo;
 
 public class OpcionesInvalidasException extends Exception {
 
-    OpcionesInvalidasException(String mensajeExcepcion) {
+    OpcionesInvalidasException(final String mensajeExcepcion) {
         super(mensajeExcepcion);
     }
 }

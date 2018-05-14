@@ -16,7 +16,7 @@ public class Opciones {
         this.asignarOpciones(entrada);
     }
 
-    private void asignarOpciones(final String[] entrada){
+    private void asignarOpciones(final String[] entrada) {
         for (int i = 0; i < entrada.length; i++) {
             if (esParseable(entrada[i])) {
                 numero = Integer.parseInt(entrada[i]);
