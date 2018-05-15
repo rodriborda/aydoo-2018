@@ -10,8 +10,8 @@ public class CalculadorSecuencia {
             a = b;
             b = c;
         }
-        if (numero == 1) {
-            return 1;
+        if (numero <= 1) {
+            return numero;
         } else {
             return c;
         }
